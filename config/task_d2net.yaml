@@ -1,0 +1,39 @@
+# config.yaml
+test:
+    trainer:
+        max_epochs: 1
+        accelerator: gpu
+        devices: [ 0 ]
+    data:
+        params:
+            data_type: hpatches
+            batch_size: 1
+            num_workers: 1
+            hpatches_params:
+                type: hpatches
+                root: /media/wrm/ubuntu_relative/course/cource1/HPatch
+                alteration: i
+                image_size: 512
+                gray: False
+    model:
+        params:
+            tooonx: 1
+            model_type: D2Net
+            task_type: repeatability
+            d2net_params:
+                weight: /media/wrm/ubuntu_relative/course/cource1/tast_1/weights/d2_tf.pth
+            extractor_params:
+                #epoch_idx: 0
+                nms_dist: 6
+                min_score: 0.0
+                top_k: 500
+                threshold: 0
+                border_dist: 8
+            repeatability_params:
+                save_path: /media/wrm/ubuntu_relative/course/cource1/tast_1/output/d2net/d2net_i.png
+                output: /media/wrm/ubuntu_relative/course/cource1/tast_1/output/d2net/
+                th: 3
+                image:
+                    radius: 6
+                    max_error: 3
+                    color: 255,0,0
